@@ -57,13 +57,15 @@ function createNew()
 
 function printRes()
 {
-    let data = new Object();
+    let data = [];
     let i = 0;
-    for (elem of document.getElementsByClassName('tableBlock')[0].getElementsByClassName('tableElem'))
-    {
-        data[elem.getElementsByTagName('input')[0].value] = elem.getElementsByTagName('input')[1].value;
+    for (elem of document.getElementsByClassName('tableBlock')[0].getElementsByClassName('tableElem')) {
+        let key = elem.getElementsByTagName('input')[0].value;
+        let value = elem.getElementsByTagName('input')[1].value;
+        data.push({ key, value });
         i++;
     }
 
-    document.getElementsByTagName('p')[0].innerHTML = JSON.stringify(data);
+    let result = data.map(item => `${item.key}: ${item.value}`).join(', ');
+    document.getElementsByTagName('p')[0].innerHTML = result;
 }
