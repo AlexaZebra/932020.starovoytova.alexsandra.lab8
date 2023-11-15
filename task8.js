@@ -62,10 +62,11 @@ function printRes()
     for (elem of document.getElementsByClassName('tableBlock')[0].getElementsByClassName('tableElem')) {
         let key = elem.getElementsByTagName('input')[0].value;
         let value = elem.getElementsByTagName('input')[1].value;
-        data.push({ key, value });
+        data.push(`"${key}": "${value}"`);
         i++;
     }
 
-    let result = data.map(item => `${item.key}: ${item.value}`).join(', ');
+    let result = `{${data.join(', ')}}`;
     document.getElementsByTagName('p')[0].innerHTML = result;
+    
 }
